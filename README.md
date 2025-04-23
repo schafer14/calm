@@ -117,7 +117,7 @@ little thought to what platform users will use.
 The app currently looks best on mobile (because that's what I use most). But
 is useable on a computer.
 
-# Not on usability
+# Note on usability
 
 I use this application. It helps me draw attention to the activity I am doing
 in a given moment. If it's useful to me it might be useful to you. If you
