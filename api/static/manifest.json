@@ -1,0 +1,60 @@
+{
+  "name": "Calm",
+  "short_name": "Calm",
+  "description": "Banner's Calming App",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/static/logo-large.webp",
+      "type": "image/webp",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/static/logo.png",
+      "type": "image/webp",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/static/logo-192.webp",
+      "type": "image/webp",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#303446",
+  "theme_color": "#ca9ee6",
+  "screenshots": [
+    {
+      "src": "/static/screenshot-wide.webp",
+      "sizes": "1300x760",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Application"
+    },
+    {
+      "src": "/static/screenshot.webp",
+      "sizes": "460x460",
+      "type": "image/webp",
+      "label": "Application"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "id": "https://calm.bannerschafer.com",
+  "categories": [
+    "productivity"
+  ],
+  "dir": "auto",
+  "edge_side_panel": {
+    "preferred_width": 300
+  },
+  "shortcuts": [
+    {
+      "name": "Version",
+      "url": "/version",
+      "description": "Get the version of the app"
+    }
+  ]
+}

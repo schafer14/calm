@@ -1,0 +1,26 @@
+- [X] Switch activities to banner
+- [X] Make activties a single frontend route
+- [X] Version URL
+- [X] UI on mobile (CLEAR CACHE PAGE)
+- [X] Store tokens locally
+- [X] Autofocus on login button
+- [X] Preset activities (like driving, or coffee)
+- [X] Logout / Settings
+- [X] Authz
+- [X] Admin create user
+- [X] Admin list users
+- [X] Admin routes
+- [X] Admin send new device token
+
+- [] Support PARA in activity category (projects, values, learning)
+- [] QR code for registration
+- [] Better icon set
+- [] Device code flow 
+- [] Add a task to the current activity (to show progress of exactly what was happening)
+- [] Future tab (describe projects in terms of: why I want to do this, how I know if I succeeded, what I hope to learn, which values it relates to)
+- [] Values description
+- [] Replace activity categories with a mapping to project or values
+- [] Device sync
+- [] Do not distrub mode and activity sharing
+- [] Show activities in a day
+- [] Offline interceptor (PWA)

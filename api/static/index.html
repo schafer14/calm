@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Calm</title>
+        <link rel="manifest" href="/manifest.json">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Description" content="Banner's Calming App">
+        <link rel="apple-touch-icon" href="/static/logo.webp">
+        <link rel="shortcut icon" href="/static/logo.webp" />
+        <meta name="theme-color" content="#ca9ee6"/>
+        <meta name="mobile-web-app-capable" content="yes">
+    </head>
+
+    <body style="background-color: #303446; margin: 0; padding: 0;">
+        <noscript>
+            <span>This website is using Elm, so it needs js enabled</span>
+        </noscript>        
+        <script src="/static/views/activities.min.js"></script>
+        <script src="/static/simplewebauthn.es5.umd.min.js"></script>
+       <script>
+            const user = JSON.parse(localStorage.getItem("user"))
+            var app = Elm.Activities.init({
+                flags: {
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                    user: user,
+                },
+            });
+            
+            if('serviceWorker' in navigator) {
+                navigator.serviceWorker
+                        .register('/static/service-worker.js')
+                        .then(function() { console.log("Service Worker Registered"); });
+            }
+
+            app.ports.requestRegistrationCredentials.subscribe(async function(message) {
+                const attestationResponse = await SimpleWebAuthnBrowser.startRegistration(message.publicKey);
+                app.ports.gotCredential.send(attestationResponse);
+            });
+
+            app.ports.requestLoginCredentials.subscribe(async function(message) {
+                 if (!SimpleWebAuthnBrowser.browserSupportsWebAuthn()) {
+                    console.log("NO BROWSER SUPPORT")
+                    
+                    return;
+                  }
+
+                const assertionResponse = await SimpleWebAuthnBrowser.startAuthentication(message.publicKey);
+                app.ports.gotLoginCredential.send(assertionResponse);
+            });
+
+            app.ports.clearCache.subscribe(async function(message) {
+                console.log("CLEARING CACHE")
+                 if ('serviceWorker' in navigator) {
+                     caches.keys().then(function(cacheNames) {
+                        cacheNames.forEach(function(cacheName) {
+                            caches.delete(cacheName);
+                        });
+                      });
+                }
+            });
+
+            app.ports.saveLoginData.subscribe(async function(message) {
+                localStorage.setItem("user", JSON.stringify(message));
+            });
+
+            app.ports.logout.subscribe(async function(message) {
+                localStorage.setItem("user", null);
+            });
+        </script>
+
+    </body>
+</html>
